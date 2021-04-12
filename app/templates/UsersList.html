@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <h1 class="page-header">Users List</h1>
+
+ <ul class="list-inline">
+    {% for user in users %}
+    <table class="table table-bordered">
+     <li class="list">{{ user.id }}</li>
+     <li class="list">{{ user.username }}</li>
+     <li class="list">{{ user.email }}</li>
+     <li class="list">{{ user.role }}</li>
+    </table>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <h1 class="page-header">Users List</h1>
+
+ <ul class="list-inline">
+  {% for topic in topics %}
+    <div class="card">
+      <a style="color:red">Topic Number: {{ topic.id }}{{ topic.topicDate }}</a>
+      <a style="color:green">{{ topic.topicDate }}</a>
+      <h2>{{ topic.title  }}</h2>
+      <p style="color:blue">{{topic.content}}</p>
+      <a href="{{ url_for('CommentsByTopicId',topicId=topic.id)}}">Topic Number: {{ topic.id }}</a>
+</div>
+            {% for comment in comments %}
+                        <div class="container">
+                            <a style="color:green">Comment Number: {{ comment.id }}, By {{ comment.userId }} ,on {{ comment.commentDate }}</a>
+                            <p style="color:blue">{{comment.comment}}</p>
+                        </div>
+            {% endfor %}
+                                        <form action = "/api/NewComment" method = "post">
+                                            <input hidden value="{{ session['username'] }}" name="userId">
+                                            <input hidden value="{{ topic.id  }}" name="topicId">
+                                            <apan style="color:red;">Hello {{ session['username'] }}, You can add you comment here</apan>:
+                                            <input type="text" name="comment" placeholder="Comment" class="form-control">
+                                            <input type="submit" value="Submit">
+                                        </form>
+           {% endfor %}
+  </ul>
+</div>
+{% endblock %}

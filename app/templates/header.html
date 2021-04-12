@@ -1,0 +1,14 @@
+<body>
+
+<div class="topnav">
+  <a style="color:red;"> {{ session['username'] }}</a>
+  <a class="active" href="{{ url_for('home')}}">Home</a>
+  <a href="{{ url_for('newFaq')}}">New Faq</a>
+  <a href="{{ url_for('FaqsList')}}">FaqList</a>
+  <a href="{{ url_for('NewTopic')}}">New Topic</a>
+  <a href="{{ url_for('TopicsList')}}">Topic List</a>
+  <a href="{{ url_for('NewUser')}}">New User</a>
+  <a href="{{ url_for('UsersList')}}">Users List</a>
+  <a href="{{ url_for('logout')}}">log out</a>
+</div>
+</body>

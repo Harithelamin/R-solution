@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<head>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+                    $(document).ready(function () {
+
+                        $('.accordion').click(function () {
+
+                            if ($(this).parent().is('.open')) {
+                                $(this).closest('.faq').find('.faq_answer_container').animate({ 'height': '0' }, 300);
+                                $(this).closest('.faq').removeClass('open');
+
+                            } else {
+                                var newHeight = $(this).closest('.faq').find('.faq_answer').height() + 'px';
+                                $(this).closest('.faq').find('.faq_answer_container').animate({ 'height': newHeight }, 300);
+                                $(this).closest('.faq').addClass('open');
+                            }
+
+                        });
+
+                });
+        </script>
+        <style>
+            /*FAQS*/
+            .faq {
+            }
+
+            .accordion {
+                background-color: #eee;
+                color: #444;
+                cursor: pointer;
+                padding: 18px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                transition: 0.4s;
+            }
+
+                .active, .accordion:hover {
+                    background-color: #ccc;
+                }
+
+            .faq_answer_container {
+                background-color: #eee;
+                color: blue;
+                cursor: pointer;
+                padding: 18px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                transition: 0.4s;
+                height: 0px;
+                overflow: hidden;
+                padding: 0px;
+            }
+
+            .faq_answer {
+                margin-left: 20px;
+            }
+
+            .body {
+                margin-bottom: 2px
+            }
+
+            .faq_container {
+                margin-top: 30px;
+            }
+        </style>
+</head>
+<div class="container">
+  <h1 class="page-header">FAQ List</h1>
+
+<div class="faq_container">
+       {% for faq in faqs %}
+            <div class="faq">
+                <div class="accordion">
+                    <span>+</span>
+                   {{ faq.question }}
+                </div>
+                <div class="faq_answer_container">
+                    <div class="faq_answer">
+                     {{ faq.answer }}
+                    </div>
+                </div>
+            </div>
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}
